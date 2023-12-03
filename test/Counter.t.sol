@@ -1,24 +1,30 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity 0.8.19;
 
-import {Test, console2} from "forge-std/Test.sol";
-import {Counter} from "../src/Counter.sol";
+import {Test} from "forge-std/Test.sol";
+import {Vm} from "forge-std/Vm.sol";
+import {console} from "forge-std/console.sol";
 
-contract CounterTest is Test {
-    Counter public counter;
+import {PublicKeysRegistry} from "../src/PublicKeysRegistry.sol";
+
+contract PublicKeysRegistryTest is Test {
+    PublicKeysRegistry public registry;
+    Vm.Wallet wallet;
 
     function setUp() public {
-        counter = new Counter();
-        counter.setNumber(0);
+        registry = new PublicKeysRegistry();
+        wallet = vm.createWallet(uint256(keccak256(bytes("1"))));
     }
 
-    function test_Increment() public {
-        counter.increment();
-        assertEq(counter.number(), 1);
-    }
+    function test_submit() public {
+        vm.startPrank(wallet.addr);
 
-    function testFuzz_SetNumber(uint256 x) public {
-        counter.setNumber(x);
-        assertEq(counter.number(), x);
+        bytes memory public_key = abi.encodePacked(wallet.publicKeyX, wallet.publicKeyY);
+        
+        assertEq(registry.public_keys(wallet.addr), new bytes(0));
+        registry.submitPublicKey(public_key);
+        assertEq(registry.public_keys(wallet.addr), public_key);
+        
+        vm.stopPrank();
     }
 }
