@@ -1,13 +1,16 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.19;
 
-contract PublicKeysRegistry {
-    error ImproperLength();
-    error ImproperPublicKey();
+import { IPublicKeysRegistry } from "src/interfaces/IPublicKeysRegistry.sol";
 
-    mapping (address user => bytes public_key) public public_keys;
+contract PublicKeysRegistry is IPublicKeysRegistry {
+    mapping (address user => bytes public_key) private public_keys;
 
-    function submitPublicKey(bytes calldata public_key) external {
+    function getPublicKey(address owner) external view override returns (bytes memory public_key) {
+        public_key = public_keys[owner];
+    }
+
+    function submitPublicKey(bytes calldata public_key) external override {
         if (public_key.length != 64) {
             revert ImproperLength();
         }

@@ -21,9 +21,9 @@ contract PublicKeysRegistryTest is Test {
 
         bytes memory public_key = abi.encodePacked(wallet.publicKeyX, wallet.publicKeyY);
         
-        assertEq(registry.public_keys(wallet.addr), new bytes(0));
+        assertEq(registry.getPublicKey(wallet.addr), new bytes(0));
         registry.submitPublicKey(public_key);
-        assertEq(registry.public_keys(wallet.addr), public_key);
+        assertEq(registry.getPublicKey(wallet.addr), public_key);
         
         vm.stopPrank();
     }
