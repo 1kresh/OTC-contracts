@@ -396,9 +396,11 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
             ERC20(positionToken).safeTransfer(customer, toReturn);
         }
 
-        toReturn = ERC20(processToken).balanceOf(address(this)) - tokenInbalanceBefore;
-        if (toReturn != 0) {
-            ERC20(processToken).safeTransfer(customer, toReturn);
+        if (processToken != positionToken) {    
+            toReturn = ERC20(processToken).balanceOf(address(this)) - tokenInbalanceBefore;
+            if (toReturn != 0) {
+                ERC20(processToken).safeTransfer(customer, toReturn);
+            }
         }
     }
 
