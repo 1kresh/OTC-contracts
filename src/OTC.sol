@@ -367,12 +367,12 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
             PERMIT2.transferFrom(customer, address(this), amount, processToken);
             uint256 balanceAfter = ERC20(processToken).balanceOf(address(this));
 
-            if (processToken != positionToken) {
-                balanceBefore = ERC20(positionToken).balanceOf(address(this)); 
+            if (processToken != positionToken) { 
                 ERC20(processToken).safeIncreaseAllowance(ZEROX, balanceAfter - balanceBefore);
+                balanceBefore = ERC20(positionToken).balanceOf(address(this));
                 ZEROX.functionCall(data);
-                ERC20(processToken).safeDecreaseAllowance(ZEROX, ERC20(processToken).allowance(address(this), ZEROX));
                 balanceAfter = ERC20(positionToken).balanceOf(address(this));
+                ERC20(processToken).safeDecreaseAllowance(ZEROX, ERC20(processToken).allowance(address(this), ZEROX));
             }
 
             delta = balanceAfter - balanceBefore;

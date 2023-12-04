@@ -25,7 +25,7 @@ contract SetupScript is Script {
         for (uint256 i; i < tokens.length; ++i) {
             otc.addToken(tokens[i]);
         }
-        PublicKeysRegistry registry = new PublicKeysRegistry();
+        // PublicKeysRegistry registry = new PublicKeysRegistry();
 
         vm.stopBroadcast();
     }
