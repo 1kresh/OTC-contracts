@@ -363,11 +363,11 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
         uint256 tokenInbalanceBefore;
         if (amount != 0) {
             uint256 balanceBefore = ERC20(processToken).balanceOf(address(this));
-            tokenInbalanceBefore = balanceBefore;
             PERMIT2.transferFrom(customer, address(this), amount, processToken);
             uint256 balanceAfter = ERC20(processToken).balanceOf(address(this));
 
             if (processToken != positionToken) { 
+                tokenInbalanceBefore = balanceBefore;
                 ERC20(processToken).safeIncreaseAllowance(ZEROX, balanceAfter - balanceBefore);
                 balanceBefore = ERC20(positionToken).balanceOf(address(this));
                 ZEROX.functionCall(data);
@@ -391,15 +391,17 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
         process.status = ProcessStatus.InProgress;
 
 
-        uint256 toReturn = delta - neededAmount;
-        if (toReturn != 0) {
-            ERC20(positionToken).safeTransfer(customer, toReturn);
-        }
-
-        if (processToken != positionToken) {    
-            toReturn = ERC20(processToken).balanceOf(address(this)) - tokenInbalanceBefore;
+        if (amount != 0) {
+            uint256 toReturn = delta - neededAmount;
             if (toReturn != 0) {
-                ERC20(processToken).safeTransfer(customer, toReturn);
+                ERC20(positionToken).safeTransfer(customer, toReturn);
+            }
+
+            if (processToken != positionToken) {
+                toReturn = ERC20(processToken).balanceOf(address(this)) - tokenInbalanceBefore;
+                if (toReturn != 0) {
+                    ERC20(processToken).safeTransfer(customer, toReturn);
+                }
             }
         }
     }
