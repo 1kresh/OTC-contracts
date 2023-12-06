@@ -291,7 +291,7 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
         }
     }
 
-    function createPosition(string calldata text, uint256 limit, address token, uint256 amount, bool privateChat) isWhitelisted(token) nonReentrant external override {
+    function createPosition(PositionType type_, string calldata text, uint256 limit, address token, uint256 amount, bool privateChat) isWhitelisted(token) nonReentrant external override {
         if (limit == 0) {
             revert ImproperLimit();
         }
@@ -299,6 +299,7 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
         uint256 id = _positions.length;
         _positions.push(Position({
             creator: msg.sender,
+            type_: type_,
             text: text,
             limit: limit,
             startedCounter: 0,

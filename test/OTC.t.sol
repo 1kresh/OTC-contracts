@@ -43,7 +43,7 @@ contract OTCTest is Test {
         otc.getPositions(0, 1000);
         otc.getPositionsByCreator(creator.addr, 0, 1000);
 
-        otc.createPosition("### AAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10, address(token0), 1e17, false);
+        otc.createPosition(IOTC.PositionType.Sell, "### AAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10, address(token0), 1e17, false);
         
         otc.getPosition(0);
         otc.getPositions(0, 1000);
@@ -104,7 +104,7 @@ contract OTCTest is Test {
         otc.getPositions(0, 1000);
         otc.getPositionsByCreator(creator.addr, 0, 1000);
 
-        otc.createPosition("### AAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10, address(token0), 1e17, false);
+        otc.createPosition(IOTC.PositionType.Sell, "### AAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10, address(token0), 1e17, false);
         
         otc.getPosition(0);
         otc.getPositions(0, 1000);
@@ -175,7 +175,7 @@ contract OTCTest is Test {
         otc.getPositions(0, 1000);
         otc.getPositionsByCreator(creator.addr, 0, 1000);
 
-        otc.createPosition("### AAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10, address(token1), 1e17, false);
+        otc.createPosition(IOTC.PositionType.Sell, "### AAAAAAAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 10, address(token1), 1e17, false);
         
         otc.getPosition(0);
         otc.getPositions(0, 1000);

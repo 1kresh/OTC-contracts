@@ -5,8 +5,14 @@ interface IOTC {
     error ImproperLength();
     error ImproperPublicKey();
 
+    enum PositionType {
+        Sell,
+        Buy
+    }
+
     struct Position {
         address creator;
+        PositionType type_;
         string text;
         uint256 limit;
         uint256 startedCounter;
@@ -75,7 +81,7 @@ interface IOTC {
     function whitelistedTokens() external view returns (Token[] memory tokens);
 
 
-    function createPosition(string calldata text, uint256 limit, address token, uint256 amount, bool privateChat) external;
+    function createPosition(PositionType type_, string calldata text, uint256 limit, address token, uint256 amount, bool privateChat) external;
 
     function createProcess(uint256 positionIndex, address arbiter, address token) external;
 
