@@ -337,12 +337,14 @@ contract OTC is Ownable, ReentrancyGuard, IOTC {
         }
     }
 
-    function sendMessage(ProcessPointer calldata processPointer, string calldata text) onlyParticipants(processPointer) nonReentrant external override {
+    function sendMessage(ProcessPointer calldata processPointer, string calldata text, bool isPrivate) onlyParticipants(processPointer) nonReentrant external override {
+        Position storage position = _positions[processPointer.positionIndex];
         Process storage process = _processes[processPointer.positionIndex][processPointer.processIndex];
 
         process.messages.push(Message({
             sender: msg.sender,
-            text: text
+            text: text,
+            isPrivate: position.privateChat ? isPrivate : false
         }));
     }
 

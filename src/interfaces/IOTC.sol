@@ -25,6 +25,7 @@ interface IOTC {
     struct Message {
         address sender;
         string text;
+        bool isPrivate;
     }
 
     enum ProcessStatus {
@@ -87,7 +88,7 @@ interface IOTC {
 
     function startProcess(ProcessPointer calldata processPointer, uint160 amount, bytes calldata data) external;
 
-    function sendMessage(ProcessPointer calldata processPointer, string calldata text) external;
+    function sendMessage(ProcessPointer calldata processPointer, string calldata text, bool isPrivate) external;
 
     function finishProcess(ProcessPointer calldata processPointer, bool approved) external;
 

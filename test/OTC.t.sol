@@ -77,7 +77,7 @@ contract OTCTest is Test {
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK1!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK1!", false);
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
@@ -87,7 +87,7 @@ contract OTCTest is Test {
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK2!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK2!", false);
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
@@ -138,7 +138,7 @@ contract OTCTest is Test {
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK1!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK1!", false);
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
@@ -148,7 +148,7 @@ contract OTCTest is Test {
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK2!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK2!", false);
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
@@ -158,7 +158,7 @@ contract OTCTest is Test {
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK3!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK3!", false);
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
     
@@ -209,7 +209,7 @@ contract OTCTest is Test {
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK1!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK1!", false);
         
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
@@ -219,7 +219,7 @@ contract OTCTest is Test {
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
-        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK2!");
+        otc.sendMessage(IOTC.ProcessPointer(0, 0), "OK2!", false);
 
         otc.getProcess(IOTC.ProcessPointer(0, 0));
 
